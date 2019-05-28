@@ -24,9 +24,7 @@ node start.js
 
 ![Screenshot](localhost.png)
 
-```
-Open the Obyte wallet and add new device. 
-
+```Open the Obyte wallet and add new device. 
 ```
 ![Screenshot](add-device.png)
 
