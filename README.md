@@ -10,9 +10,9 @@ node.js 6+
 ```
 npm install
 ```
-##Make sure you have done 
-
-```cp .env.testnet .env
+## Make sure you have done 
+```
+cp .env.testnet .env
 ```
 
 ## Run
