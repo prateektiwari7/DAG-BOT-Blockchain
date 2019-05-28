@@ -40,7 +40,9 @@ node start.js
 
 ![Screenshot](waittransaction.png)
 
-### Check the transaction in the wallet to confirm .
+Alt-H1
+
+### Check the transaction in the wallet to confirm 
 
 ![Screenshot](Sendtransaction.png)
 
