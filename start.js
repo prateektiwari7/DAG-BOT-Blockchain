@@ -30,7 +30,7 @@ eventBus.once('headless_wallet_ready', () => {
 			headlessWallet.issueNextMainAddress((address) => {
 				assocMyAddressToDeviceAddress[address] = from_address;
 				assocDeviceAddressToMyAddress[from_address] = address;
-				device.sendMessageToDevice(from_address, 'text', '[balance](byteball:' + address + '?amount=10)');
+				device.sendMessageToDevice(from_address, 'text', '[balance](byteball:' + address + '?amount=500)');
 			});
 		} else if (assocDeviceAddressToMyAddress[from_address]) {
 			device.sendMessageToDevice(from_address, 'text', '[balance](byteball:' + assocDeviceAddressToMyAddress[from_address] + '?amount=5000)');

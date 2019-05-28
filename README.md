@@ -32,4 +32,16 @@ node start.js
 
 ![Screenshot](DAG-bot.png)
 
+### Paste your address of Obyte wallet and have a look :) 
+
+![Screenshot](pasteyouaddress.png)
+
+### Do the payment and wait for revert back from bot after success.
+
+![Screenshot](waittransaction.png)
+
+### Check the transaction in the wallet to confirm 
+
+![Screenshot](Sendtransaction.png)
+
 
