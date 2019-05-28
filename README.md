@@ -24,8 +24,10 @@ node start.js
 
 ![Screenshot](localhost.png)
 
-## Open the Obyte wallet and add new device. 
+```
+Open the Obyte wallet and add new device. 
 
+```
 ![Screenshot](add-device.png)
 
 ####  Add your device pairing in the add new wallet. You can check it on node start.js screen.
