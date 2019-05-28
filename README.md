@@ -22,4 +22,4 @@ node start.js
 
 ## Output looks like 
 
-<img src="localhost.png" width="100" height=""20>
+![Screenshot](localhost.png)
