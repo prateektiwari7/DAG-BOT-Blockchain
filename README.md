@@ -22,5 +22,5 @@ node start.js
 
 ## Output looks like 
 ```
-
+![Screenshot](localhost.png)
 ```
