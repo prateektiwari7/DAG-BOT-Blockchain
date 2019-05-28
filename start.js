@@ -7,33 +7,38 @@ const eventBus = require('ocore/event_bus');
 const validationUtils = require('ocore/validation_utils');
 const headlessWallet = require('headless-obyte');
 
-/**
- * headless wallet is ready
- */
+
+let assocDeviceAddressToPeerAddress = {};
+let assocDeviceAddressToMyAddress = {};
+let assocMyAddressToDeviceAddress = {};
+
+
 eventBus.once('headless_wallet_ready', () => {
 	headlessWallet.setupChatEventHandlers();
 	
-	/**
-	 * user pairs his device with the bot
-	 */
 	eventBus.on('paired', (from_address, pairing_secret) => {
-		// send a geeting message
 		const device = require('ocore/device.js');
-		device.sendMessageToDevice(from_address, 'text', "Welcome to my new shiny bot!");
+		device.sendMessageToDevice(from_address, 'text', "Please send me your address");
 	});
-
-	/**
-	 * user sends message to the bot
-	 */
+	
 	eventBus.on('text', (from_address, text) => {
-		// analyze the text and respond
-		text = text.trim();
-		
 		const device = require('ocore/device.js');
-		if (!text.match(/^You said/))
-			device.sendMessageToDevice(from_address, 'text', "You said: " + text);
+		text = text.trim();
+		if (validationUtils.isValidAddress(text)) {
+			assocDeviceAddressToPeerAddress[from_address] = text;
+			device.sendMessageToDevice(from_address, 'text', 'Saved your Byteball address');
+			headlessWallet.issueNextMainAddress((address) => {
+				assocMyAddressToDeviceAddress[address] = from_address;
+				assocDeviceAddressToMyAddress[from_address] = address;
+				device.sendMessageToDevice(from_address, 'text', '[balance](byteball:' + address + '?amount=10)');
+			});
+		} else if (assocDeviceAddressToMyAddress[from_address]) {
+			device.sendMessageToDevice(from_address, 'text', '[balance](byteball:' + assocDeviceAddressToMyAddress[from_address] + '?amount=5000)');
+		} else {
+			device.sendMessageToDevice(from_address, 'text', "Please send me your address");
+		}
 	});
-
+	
 });
 
 
@@ -41,24 +46,37 @@ eventBus.once('headless_wallet_ready', () => {
  * user pays to the bot
  */
 eventBus.on('new_my_transactions', (arrUnits) => {
-	// handle new unconfirmed payments
-	// and notify user
-	
-//	const device = require('ocore/device.js');
-//	device.sendMessageToDevice(device_address_determined_by_analyzing_the_payment, 'text', "Received your payment");
+	const device = require('ocore/device.js');
+	db.query("SELECT address, amount, asset FROM outputs WHERE unit IN (?)", [arrUnits], rows => {
+		rows.forEach(row => {
+			let deviceAddress = assocMyAddressToDeviceAddress[row.address];
+			if (row.asset === null && deviceAddress) {
+				device.sendMessageToDevice(deviceAddress, 'text', 'I received your payment: ' + row.amount + ' bytes');
+				return true;
+			}
+		})
+	});
 });
 
 /**
  * payment is confirmed
  */
 eventBus.on('my_transactions_became_stable', (arrUnits) => {
-	// handle payments becoming confirmed
-	// and notify user
-	
-//	const device = require('ocore/device.js');
-//	device.sendMessageToDevice(device_address_determined_by_analyzing_the_payment, 'text', "Your payment is confirmed");
+	const device = require('ocore/device.js');
+	db.query("SELECT address, amount, asset FROM outputs WHERE unit IN (?)", [arrUnits], rows => {
+		rows.forEach(row => {
+			let deviceAddress = assocMyAddressToDeviceAddress[row.address];
+			if (row.asset === null && deviceAddress) {
+				headlessWallet.sendAllBytesFromAddress(row.address, assocDeviceAddressToPeerAddress[deviceAddress], deviceAddress, (err, unit) => {
+					if(err) device.sendMessageToDevice(deviceAddress, 'text', 'Oops, there\'s been a mistake. : ' + err);
+					
+					device.sendMessageToDevice(deviceAddress, 'text', 'I sent back your payment! Unit: ' + unit);
+					return true;
+				})
+			}
+		})
+	});
 });
-
 
 
 process.on('unhandledRejection', up => { throw up; });
