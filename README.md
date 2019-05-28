@@ -20,3 +20,4 @@ cp .env.testnet .env
 node start.js
 ```
 
+![Screenshot](localhost.png)
