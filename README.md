@@ -28,11 +28,11 @@ node start.js
 
 ![Screenshot](add-device.png)
 
-###  Add your device pairing in the add new wallet. You can check it on node start.js screen
+###  Add your device pairing in the add new wallet. You can check it on node start.js screen.
 
 ![Screenshot](DAG-bot.png)
 
-### Paste your address of Obyte wallet and have a look :) 
+### Paste your address of Obyte wallet and have a look :) .
 
 ![Screenshot](pasteyouaddress.png)
 
@@ -40,8 +40,10 @@ node start.js
 
 ![Screenshot](waittransaction.png)
 
-### Check the transaction in the wallet to confirm 
+### Check the transaction in the wallet to confirm .
 
 ![Screenshot](Sendtransaction.png)
+
+
 
 
