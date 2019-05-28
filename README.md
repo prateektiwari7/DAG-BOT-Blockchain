@@ -29,26 +29,31 @@ Open the Obyte wallet and add new device.
 ```
 ![Screenshot](add-device.png)
 
-####  Add your device pairing in the add new wallet. You can check it on node start.js screen.
+```
+Add your device pairing in the add new wallet. You can check it on node start.js screen.
+```
 
 ![Screenshot](DAG-bot.png)
 
-#### Paste your address of Obyte wallet and have a look :) .
-
+```
+Paste your address of Obyte wallet and have a look :) .
+```
 ![Screenshot](payment_request.png)
 
-#### Do the payment and wait for revert back from bot after success.
+```
+Do the payment and wait for revert back from bot after success.
+```
 
 ![Screenshot](send_transaction-amount.png)
 
-Alt-H1
-
-#### Check the transaction in the wallet to confirm 
-
+```
+Check the transaction in the wallet to confirm
+```
 ![Screenshot](confirmed_transaction.png)
 
-#### Hurrey I got the revert payment.
-
+```
+Hurrey I got the revert payment.
+```
 ![Screenshot](Success.png)
 
 
