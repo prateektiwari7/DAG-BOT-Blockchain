@@ -28,4 +28,8 @@ node start.js
 
 ![Screenshot](add-device.png)
 
+###  Add your device pairing in the add new wallet. You can check it on node start.js screen
+
+
+
 
