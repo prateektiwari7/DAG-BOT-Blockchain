@@ -19,3 +19,4 @@ cp .env.testnet .env
 ```
 node start.js
 ```
+
