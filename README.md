@@ -30,6 +30,6 @@ node start.js
 
 ###  Add your device pairing in the add new wallet. You can check it on node start.js screen
 
-
+![Screenshot](DAG-bot.png)
 
 

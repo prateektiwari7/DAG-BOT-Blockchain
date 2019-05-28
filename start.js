@@ -18,7 +18,7 @@ eventBus.once('headless_wallet_ready', () => {
 	
 	eventBus.on('paired', (from_address, pairing_secret) => {
 		const device = require('ocore/device.js');
-		device.sendMessageToDevice(from_address, 'text', "Please send me your address");
+		device.sendMessageToDevice(from_address, 'text', "Hi this is Prateek DAG network .Please send me your address");
 	});
 	
 	eventBus.on('text', (from_address, text) => {
