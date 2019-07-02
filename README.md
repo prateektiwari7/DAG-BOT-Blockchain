@@ -1,4 +1,4 @@
-# Bot Example
+# Bot Example With Blockchain
 
 Example source code for O<sub>byte</sub> chatbot.  Copy this bot and start adding your stuff.
 
